@@ -1,4 +1,4 @@
-# Godoc Service For Private Github Repositories.
+# Godoc Service For Private Github Repositories
 
 The Godoc web service provides a way to publish godocs for private Github repositories.  It uses Github topics as a way to identify which repositories under a user or organization to publish locally.  By default it uses the `godoc` topic but is configurable to any topic value.
 

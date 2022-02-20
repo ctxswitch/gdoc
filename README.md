@@ -24,7 +24,6 @@ The recommended way to run is using docker.  You can build and run the container
 docker run --rm -it -e GITHUB_TOKEN=$GITHUB_TOKEN -e GITHUB_USER=$GITHUB_USER -p 6060:6060 ctxsh/gdoc
 ```
 
-Browse to your Github account and add a topic tag of `godoc` to the repositories that you would like the service to discover.  Once the topic tag has been added, the service will pick up the new repository on it's next Github poll.  The new information will be available after the next index cycle has completed and the broswer page has been refreshed.
-
+Browse to your Github account and add a topic tag of `godoc` to the repositories that you would like the service to discover.  Once the topic tag has been added, the service will pick up the new repository on it's next Github poll.  The new information will be available after the next index cycle has completed and the browser page has been refreshed.
 
 Direct your browser to http://localhost:6060 and browse your go documentation.

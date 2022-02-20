@@ -9,7 +9,7 @@ Several configuration parameters are available for controlling the behavior of t
 * `GITHUB_TOPIC`: The topic that will be used as a filter to identify repositories that will be synchronized.  Default is `godoc`
 * `GODOC_PORT`: The port that godoc will run on. Default is `6060`.
 * `GODOC_ROOT`: The workspace root that will be passed to godoc.  This is also the root of where your repositories will be cloned and updated.  Default is `/usr/local/go`.
-* `GODOC_INDEX_INTERVAL`: The indexing interval for godoc.  0 for default (5m), negative to only index once at startup.
+* `GODOC_INDEX_INTERVAL`: The indexing interval for godoc.  0 for the godoc default (5m), negative to only index once at startup.  Default for this service is `1m`
 * `LOG_LEVEL`: Changes the verbosity of the logging service.  Default is ÌNFO`.
 
 This is a basic service that does not provide any coordination in terms of repository synchronization.  As such, scaling this out for availability reasons could be impactful on your API limits.  In the future, the possibility of shared object storage and leader elections could solve this, but these features have not yet been planned.

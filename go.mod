@@ -1,4 +1,4 @@
-module github.com/ctxswitch/godoc-web
+module github.com/ctxswitch/gdoc
 
 go 1.17
 

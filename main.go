@@ -24,10 +24,10 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/ctxswitch/godoc-web/internal/config"
-	"github.com/ctxswitch/godoc-web/internal/godoc"
-	"github.com/ctxswitch/godoc-web/internal/logger"
-	"github.com/ctxswitch/godoc-web/internal/syncer"
+	"github.com/ctxswitch/gdoc/internal/config"
+	"github.com/ctxswitch/gdoc/internal/godoc"
+	"github.com/ctxswitch/gdoc/internal/logger"
+	"github.com/ctxswitch/gdoc/internal/syncer"
 	"go.uber.org/zap"
 )
 

@@ -5,7 +5,7 @@ ARG BUILD
 
 ENV GODOC_ROOT=/usr/local/go
 
-WORKDIR /usr/src/godoc-web
+WORKDIR /usr/src/gdoc
 COPY go.mod go.sum ./
 RUN : \
   && go mod download && go mod verify \
@@ -18,7 +18,7 @@ RUN : \
   && :
 
 WORKDIR /
-RUN rm -rf /usr/src/godoc-web
+RUN rm -rf /usr/src/gdoc
 
 EXPOSE 6060
-CMD [ "/usr/local/bin/godoc-web" ]
+CMD [ "/usr/local/bin/gdoc" ]

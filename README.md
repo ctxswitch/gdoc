@@ -19,12 +19,12 @@ This is a basic service that does not provide any coordination in terms of repos
 To install directly and run on your workstation, use:
 
 ```
-go install github.com/ctxswitch/godoc-web@latest
-GITHUB_TOKEN="..." GITHUB_USER="user" godoc-web
+go install github.com/ctxswitch/gdoc@latest
+GITHUB_TOKEN="..." GITHUB_USER="user" gdoc
 ```
 
 You can also use the provided docker container:
 
 ```
-docker run --rm -it -e GITHUB_TOKEN=$GITHUB_TOKEN -e GITHUB_USER=$GITHUB_USER -p 6060:6060 ctxsh/godoc-web
+docker run --rm -it -e GITHUB_TOKEN=$GITHUB_TOKEN -e GITHUB_USER=$GITHUB_USER -p 6060:6060 ctxsh/gdoc
 ```

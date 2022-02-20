@@ -7,7 +7,7 @@ Several configuration parameters are available for controlling the behavior of t
 * `GITHUB_TOKEN`: A personal access token with permissions to access and list the repositories.  **Required**
 * `GITHUB_USER`: The Github user or organization that will be scraped.  Only single values are currently supported. **Required**
 * `GITHUB_TOKEN_USER`: If the user that owns the personal access token is different than the owner or the repositories are part of an organization, specify the token user.  Defaults to the `GITHUB_USER`.
-* `GITHUB_POLL_INTERVAL`: The interval to check for changes on Github.  Takes a duration string for the value.  The string is an unsigned decimal number(s), with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".  Default is `5m`.
+* `GITHUB_POLL_INTERVAL`: The interval to check for changes on Github.  Takes a duration string for the value.  The string is an unsigned decimal number(s), with optional fraction and a unit suffix, such as "300s", "5m" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".  Default is `5m`.
 * `GITHUB_TOPIC`: The topic that will be used as a filter to identify repositories that will be synchronized.  Default is `godoc`
 * `GODOC_PORT`: The port that godoc will run on. Default is `6060`.
 * `GODOC_ROOT`: The workspace root that will be passed to godoc.  This is also the root of where your repositories will be cloned and updated.  Default is `/usr/local/go`.

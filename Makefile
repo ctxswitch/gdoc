@@ -21,8 +21,8 @@ build:
 run:
 	GODOC_ROOT=/tmp LOG_LEVEL=DEBUG go run main.go
 
-docker-buildx:
-	docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --build-arg VERSION=$(VERSION) --build-arg=BUILD=$(BUILD) --tag ctxsh/gdoc .
+publish:
+	docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --build-arg VERSION=$(VERSION) --build-arg=BUILD=$(BUILD) --tag ctxsh/gdoc:$(VERSION) --tag ctxsh/gdoc:latest .
 
 docker:
 	docker build --build-arg VERSION=$(VERSION) --build-arg=BUILD=$(BUILD) --tag ctxsh/gdoc .

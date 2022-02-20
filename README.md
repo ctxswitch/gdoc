@@ -1,4 +1,5 @@
-# Godoc Web
+# Gdoc - Godoc Service For Private Github Repositories.
+
 The Godoc web service provides a way to publish godocs for private Github repositories.  It uses Github topics as a way to identify which repositories under a user or organization to publish locally.  By default it uses the `godoc` topic but is configurable to any topic value.
 
 Several configuration parameters are available for controlling the behavior of the service.  They are defined through environment variables and include:
@@ -16,15 +17,15 @@ This is a basic service that does not provide any coordination in terms of repos
 
 ## Install and Run
 
+The recommended way to run is using docker.  You can build and run the container directly or run the prebuilt container.
+
+```
+docker run --rm -it -e GITHUB_TOKEN=$GITHUB_TOKEN -e GITHUB_USER=$GITHUB_USER -p 6060:6060 ctxsh/gdoc
+```
+
 To install directly and run on your workstation, use:
 
 ```
 go install github.com/ctxswitch/gdoc@latest
 GITHUB_TOKEN="..." GITHUB_USER="user" gdoc
-```
-
-You can also use the provided docker container:
-
-```
-docker run --rm -it -e GITHUB_TOKEN=$GITHUB_TOKEN -e GITHUB_USER=$GITHUB_USER -p 6060:6060 ctxsh/gdoc
 ```

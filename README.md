@@ -29,3 +29,5 @@ To install directly and run on your workstation, use:
 go install github.com/ctxswitch/gdoc@latest
 GITHUB_TOKEN="..." GITHUB_USER="user" gdoc
 ```
+
+Direct your browser to http://localhost:6060 and browse your go documentation.

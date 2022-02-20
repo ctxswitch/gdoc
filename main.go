@@ -35,29 +35,29 @@ func main() {
 	cfg := config.New()
 	logger := logger.New(cfg.LogLevel)
 
-	logger.Info("Starting up godoc service")
 	logger.Debug("Using configuration", zap.Any("config", cfg))
 
 	var wg sync.WaitGroup
 
-	gsync := syncer.New(syncer.SyncerOptions{
+	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
+	defer cancel()
+
+	gsync := syncer.New(ctx, syncer.SyncerOptions{
 		GithubToken:        cfg.GithubToken,
 		GithubTokenUser:    cfg.GithubTokenUser,
 		GithubUser:         cfg.GithubUser,
 		GithubTopic:        cfg.GithubTopic,
 		GithubPollInterval: cfg.GithubPollInterval,
-		GoRoot:             cfg.GoRoot,
+		GodocRoot:          cfg.GodocRoot,
 		Logger:             logger,
 	})
 
 	godoc := godoc.New(godoc.GodocOptions{
-		Goroot:    cfg.GoRoot,
-		GodocPort: cfg.GodocPort,
-		Logger:    logger,
+		GodocRoot:          cfg.GodocRoot,
+		GodocPort:          cfg.GodocPort,
+		GodocIndexInterval: cfg.GodocIndexInterval,
+		Logger:             logger,
 	})
-
-	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
-	defer cancel()
 
 	wg.Add(1)
 	go func() {

@@ -41,7 +41,10 @@ type Config struct {
 	// The port that godoc will run on.
 	GodocPort int `envconfig:"GODOC_PORT" default:"6060"`
 	// The GOROOT value that will be passed to godoc.
-	GoRoot string `envconfig:"GOROOT" default:"/tmp"`
+	GodocRoot string `envconfig:"GODOC_ROOT" default:"/usr/local/go"`
+	// The indexing interval for godoc.  0 for default (5m), negative
+	// to only index once at startup.
+	GodocIndexInterval string `envconfig:"GODOC_INDEX_INTERVAL" default:"1m"`
 	// Changes the verbosity of the logging system.
 	LogLevel string `envconfig:"LOG_LEVEL" default:"INFO"`
 }

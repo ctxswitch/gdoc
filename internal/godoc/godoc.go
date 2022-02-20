@@ -31,9 +31,12 @@ import (
 type GodocOptions struct {
 	// The GOROOT value that will be passed to godoc.  Initially set
 	// in the config.
-	Goroot string
+	GodocRoot string
 	// The port that godoc will run on. Initially set in the config.
 	GodocPort int
+	// The indexing interval for godoc.  0 for default (5m), negative
+	// to only index once at startup.
+	GodocIndexInterval string
 	// The logger used by the godoc service. Initially set in the
 	// config.
 	Logger *zap.Logger
@@ -65,9 +68,10 @@ func (g *Godoc) Start(ctx context.Context) error {
 	}
 
 	arg := []string{
-		fmt.Sprintf("-http=localhost:%d", g.options.GodocPort),
-		fmt.Sprintf("-goroot=%s", g.options.Goroot),
+		fmt.Sprintf("-http=:%d", g.options.GodocPort),
+		fmt.Sprintf("-goroot=%s", g.options.GodocRoot),
 		"-index",
+		fmt.Sprintf("-index_interval=%s", g.options.GodocIndexInterval),
 	}
 	// Godoc is required to be in the path.
 	cmd := exec.CommandContext(ctx, godoc, arg...)

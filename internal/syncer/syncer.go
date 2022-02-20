@@ -53,7 +53,7 @@ type SyncerOptions struct {
 	// "h".  Initially set in the config.
 	GithubPollInterval string
 	// Changes the verbosity of the logging system.  Initially set in the config.
-	GoRoot string
+	GodocRoot string
 	// The logger used by the godoc service. Initially set in the
 	// config.
 	Logger *zap.Logger
@@ -71,12 +71,18 @@ type Syncer struct {
 	logger  *zap.Logger
 }
 
-func New(options SyncerOptions) *Syncer {
-	return &Syncer{
+// New intializes a the github sync service and performs the initial
+// sync.
+func New(ctx context.Context, options SyncerOptions) *Syncer {
+	s := &Syncer{
 		options: options,
 		repos:   make(map[string]*Repo),
 		logger:  options.Logger,
 	}
+
+	// Perform the initial sync
+	s.sync(ctx)
+	return s
 }
 
 // Start runs the synchronization process.  The process is repeated at an interval
@@ -155,7 +161,7 @@ func (rs *Syncer) sync(ctx context.Context) {
 			Owner:     *repo.Owner.Login,
 			Name:      *repo.Name,
 			CloneURL:  *repo.CloneURL,
-			LocalPath: fmt.Sprintf("%s/src/github.com/%s", rs.options.GoRoot, *repo.FullName),
+			LocalPath: fmt.Sprintf("%s/src/github.com/%s", rs.options.GodocRoot, *repo.FullName),
 		}
 
 		branch, _, err := client.Repositories.GetBranch(ctx, r.Owner, r.Name, *repo.DefaultBranch, true)

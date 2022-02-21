@@ -18,7 +18,9 @@
 // under the License.
 package config
 
-import "github.com/kelseyhightower/envconfig"
+import (
+	"github.com/kelseyhightower/envconfig"
+)
 
 type Config struct {
 	// A personal access token with permissions to access and list the
@@ -52,7 +54,8 @@ type Config struct {
 // New returns a configuration that has been processed and defaulted.
 func New() *Config {
 	config := &Config{}
-	envconfig.Process("", config)
+	_ = envconfig.Process("", config)
+
 	if config.GithubTokenUser == "" {
 		config.GithubTokenUser = config.GithubUser
 	}
